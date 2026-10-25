@@ -13,6 +13,7 @@
 
 .intro-content {
   text-align: center;
+  padding: 24px;
 }
 
 .intro-prompt {
@@ -23,14 +24,117 @@
 }
 
 .intro-name {
-  color: #969093;
   font-size: clamp(32px, 6vw, 64px);
   letter-spacing: 4px;
   margin: 0;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.intro-name span {
+  position: relative;
+  transition: color 0.12s ease;
+}
+
+.untyped {
+  color: #625c5e;
+}
+
+.correct {
+  color: #f1eeee;
+}
+
+.current::before {
+  content: '';
+  position: absolute;
+  left: -2px;
+  top: 5%;
+  width: 2px;
+  height: 90%;
+  background: #f1eeee;
+  animation: blink 1s step-end infinite;
 }
 
 .intro-hint {
-  color: #625c5e;
+  color: #969093;
   font-size: 12px;
   margin-top: 28px;
+  min-height: 20px;
+}
+
+.welcome {
+  text-align: center;
+  animation: fade-in 0.8s ease forwards;
+}
+
+.welcome h1 {
+  color: #f1eeee;
+  font-size: clamp(36px, 7vw, 72px);
+}
+
+.welcome p {
+  color: #a72b42;
+  font-size: 18px;
+}
+
+/* Animations */
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* Whole-name error feedback */
+
+.name-error {
+  animation: name-error-shake 0.3s ease-out;
+}
+
+.name-error span {
+  animation: name-error-flash 0.3s ease-out;
+}
+
+@keyframes name-error-shake {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+
+  20% {
+    transform: translate(-5px, -2px);
+  }
+
+  40% {
+    transform: translate(5px, 2px);
+  }
+
+  60% {
+    transform: translate(-3px, 0);
+  }
+
+  80% {
+    transform: translate(2px, -1px);
+  }
+}
+
+@keyframes name-error-flash {
+  0%, 70% {
+    color: #ff4566;
+  }
+
+  100% {
+    color: inherit;
+  }
 }
