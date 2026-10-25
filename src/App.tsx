@@ -7,7 +7,18 @@ function App() {
   const [typed, setTyped] = useState('')
   const [errorCount, setErrorCount] = useState(0)
   const [entered, setEntered] = useState(false)
+  const [typingNavigation, setTypingNavigation] = useState(true)
 
+  function handleNavigation(page: string) {
+    if (typingNavigation) {
+      // We'll implement the typing prompt next.
+      console.log('Type to navigate:', page)
+    } else {
+      // We'll implement the actual pages next.
+      console.log('Navigate to:', page)
+    }
+  }
+  
   useEffect(() => {
     if (entered) return
 
@@ -73,13 +84,57 @@ function App() {
           <p className="intro-hint">
             start typing anywhere
           </p>
-        </div>
-      ) : (
-        <div className="welcome">
-          <h1>ela aquino</h1>
-          <p>welcome to my portfolio ♡</p>
-        </div>
-      )}
+        </div>     
+        ) : (
+          <div className="homepage">
+            <div className="typing-toggle">
+              <label htmlFor="typing-navigation">
+                typing navigation
+              </label>
+              <input
+                id="typing-navigation"
+                type="checkbox"
+                checked={typingNavigation}
+                onChange={() => setTypingNavigation(!typingNavigation)}
+              />
+            </div>
+
+            <h1 className="welcome-title">welcome!</h1>
+
+            <div className="homepage-content">
+              <nav className="page-navigation">
+                {['about me', 'projects', 'experience', 'contact me'].map(
+                  (page, index) => (
+                    <button
+                      key={page}
+                      className="page-link"
+                      onClick={() => handleNavigation(page)}
+                    >
+                      <span className="page-number">
+                        0{index + 1}.
+                      </span>
+                      <span>{page}</span>
+                    </button>
+                  )
+                )}
+              </nav>
+
+              <div className="profile-section">
+                <div className="profile-image">
+                  <img
+                    src="/profile.jpg"
+                    alt="Ela Aquino"
+                  />
+                </div>
+
+                <p className="profile-caption">
+                  can you tell my favorite color is red?
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
     </main>
   )
 }
