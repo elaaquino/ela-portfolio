@@ -12,19 +12,29 @@ const photos = [
     caption: 'hello, world! ♡',
   },
   {
-    src: '/photos/hackathon.jpg',
-    alt: 'Ela attending a hackathon',
-    caption: 'building things at hackathons',
+    src: '/photos/google.jpg',
+    alt: 'Ela at Google',
+    caption: 'amazing visit to Google Cloud (thanks to WiCS!)',
   },
   {
-    src: '/photos/google.jpg',
-    alt: 'Ela visiting Google',
-    caption: 'a little adventure at Google',
+    src: '/photos/wics.jpg',
+    alt: 'Ela and WiCS',
+    caption: 'representing women in cs at de anza college!',
   },
   {
     src: '/photos/nvidia.jpg',
     alt: 'Ela visiting NVIDIA',
-    caption: 'exploring the world of tech',
+    caption: 'got to explore the insane amount of buildings @ NVIDIA (i thought the zoom pods were cool...)',
+  },
+  {
+    src: '/photos/riot.jpg',
+    alt: 'Ela at Riot Games',
+    caption: 'me and the killjoy turret @ Riot Games Arena in SoCal',
+  },
+  {
+    src: '/photos/steak.jpg',
+    alt: 'A steak',
+    caption: 'one of my best, i had to show it: medium-rare new york strip steak with garlic mashed potatoes',
   },
 ]
 
@@ -76,34 +86,38 @@ function AboutMe({ onBack }: AboutMeProps) {
           <div className="about-section">
             <h2>01 / my story</h2>
             <p>
-              Write about yourself here! Introduce your background,
-              your experiences, and what originally sparked your
-              interest in technology.
+              Hello, I'm Ela! I'm a third-year computer science student, transferring to the University of Southern California
+              in the Spring of 2027. As I continue my journey, I'm still searching for my niche in the tech world. While I have taken
+              a strong interest in frontend development and interactive interfaces, AI engineering and game development
+              are two areas that I am currently exploring.
             </p>
           </div>
 
           <div className="about-section">
             <h2>02 / what drives me</h2>
             <p>
-              Talk about your goals, what you hope to accomplish,
-              and the kinds of opportunities or projects you're
-              excited to pursue.
+              Growing up in the bay area, I have always been surrounded by technology and innovation, which is part
+              of what inspired me to pursue a career in tech. I hold a deep passion for becoming a software engineer,
+              making a positive impact on the world through technology, and incoporating fun and whimsiness in between!
+              Even with the rise of AI and challenges in the tech industry, I am determined to increase the
+              representation of women in tech and to continue learning and growing as a developer.
             </p>
           </div>
 
           <div className="about-section">
             <h2>03 / beyond the screen</h2>
             <p>
-              Share your hobbies, interests, and the things you
-              enjoy doing outside of programming.
+                Apart from developing, I love to doodle, sing, and cook medium-rare ribeye steaks! I also enjoy
+                playing video games, such as Valorant, League of Legends, and Minesweeper (very competively). I even livestream
+                on Twitch sometimes!
             </p>
           </div>
 
           <div className="about-section">
             <h2>04 / one last thing</h2>
             <p>
-              Add a short closing statement here. This could be
-              something personal, funny, or memorable!
+              My inspiration for this portflio came from my addiction to Monkeytype, a typing game that tracks your words per minute.
+              I would try to say you can't beat my typing speed, but I'm not a liar... Hope you enjoy the interactions!
             </p>
           </div>
         </section>
