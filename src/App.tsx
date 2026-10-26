@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import AboutMe from './pages/AboutMe'
+import Projects from './pages/Projects'
 
 const NAME = 'ela aquino'
 const PAGES = ['about me', 'projects', 'experience', 'contact me'] as const
@@ -159,6 +160,8 @@ function App() {
         </div>
         ) : currentPage === 'about me' ? (
           <AboutMe onBack={goHome} />
+        ) : currentPage === 'projects' ? (
+          <Projects onBack={goHome} />
         ) : currentPage ? (
           <div className="content-page">
             <button className="back-button" onClick={goHome}>
