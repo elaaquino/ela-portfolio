@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import './App.css'
+import AboutMe from './pages/AboutMe'
 
 const NAME = 'ela aquino'
 const PAGES = ['about me', 'projects', 'experience', 'contact me'] as const
@@ -156,16 +157,18 @@ function App() {
             start typing anywhere
           </p>
         </div>
-      ) : currentPage ? (
-        <div className="content-page">
-          <button className="back-button" onClick={goHome}>
-            ← back home
-          </button>
+        ) : currentPage === 'about me' ? (
+          <AboutMe onBack={goHome} />
+        ) : currentPage ? (
+          <div className="content-page">
+            <button className="back-button" onClick={goHome}>
+              ← back home
+            </button>
 
-          <h1>{currentPage}</h1>
-          <p>coming soon ♡</p>
-        </div>
-      ) : (
+            <h1>{currentPage}</h1>
+            <p>coming soon ♡</p>
+          </div>
+        ) : (
         <div className="homepage">
           <div className="typing-toggle">
             <label htmlFor="typing-navigation">
