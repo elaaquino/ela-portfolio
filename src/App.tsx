@@ -23,6 +23,12 @@ function App() {
       return
     }
 
+    if (selectedPage === page) {
+      setSelectedPage(null)
+      setNavigationTyped('')
+      return
+    }
+
     setSelectedPage(page)
     setNavigationTyped('')
     setNavigationError(0)
@@ -82,6 +88,7 @@ function App() {
 
     function handleNavigationKeyDown(event: KeyboardEvent) {
       if (event.ctrlKey || event.metaKey || event.altKey) return
+      if (event.repeat) return
 
       if (event.key === 'Escape') {
         setSelectedPage(null)
@@ -176,21 +183,52 @@ function App() {
 
             <div className="homepage-content">
               
+            
             <nav className="page-navigation">
               {PAGES.map((page, index) => (
                 <button
                   key={page}
-                  className="page-link"
+                  className={`page-link ${
+                    selectedPage === page ? 'page-link-active' : ''
+                  }`}
                   onClick={() => handleNavigation(page)}
                 >
                   <span className="page-number">
                     0{index + 1}.
                   </span>
 
-                  <span>{page}</span>
+                  <span
+                    key={selectedPage === page ? navigationError : 'idle'}
+                    className={[
+                      'page-label',
+                      selectedPage === page && navigationError > 0
+                        ? 'navigation-error'
+                        : ''
+                    ].join(' ')}
+                  >
+                    {page.split('').map((character, characterIndex) => (
+                      <span
+                        key={characterIndex}
+                        className={[
+                          selectedPage === page
+                            ? characterIndex < navigationTyped.length
+                              ? 'correct'
+                              : 'untyped'
+                            : '',
+                          selectedPage === page &&
+                          characterIndex === navigationTyped.length
+                            ? 'current'
+                            : ''
+                        ].join(' ')}
+                      >
+                        {character === ' ' ? '\u00A0' : character}
+                      </span>
+                    ))}
+                  </span>
                 </button>
               ))}
             </nav>
+
 
               <div className="profile-section">
                 <div className="profile-image">
@@ -205,36 +243,6 @@ function App() {
                 </p>
               </div>
             </div>
-            {selectedPage && (
-              <div className="navigation-overlay">
-                <div className="navigation-prompt">
-                  <p>type to navigate</p>
-
-                  <h2
-                    key={navigationError}
-                    className={`navigation-word ${
-                      navigationError > 0 ? 'name-error' : ''
-                    }`}
-                  >
-                    {selectedPage.split('').map((character, index) => (
-                      <span
-                        key={index}
-                        className={[
-                          index < navigationTyped.length ? 'correct' : 'untyped',
-                          index === navigationTyped.length ? 'current' : ''
-                        ].join(' ')}
-                      >
-                        {character === ' ' ? '\u00A0' : character}
-                      </span>
-                    ))}
-                  </h2>
-
-                  <p className="navigation-hint">
-                    press ESC to cancel
-                  </p>
-                </div>
-              </div>
-            )}
           </div>
         )}
 

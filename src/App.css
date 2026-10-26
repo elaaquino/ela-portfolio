@@ -267,49 +267,6 @@
 }
 
 
-/* Navigation typing overlay */
-
-.navigation-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgba(13, 11, 12, 0.96);
-  backdrop-filter: blur(12px);
-}
-
-.navigation-prompt {
-  text-align: center;
-  padding: 24px;
-}
-
-.navigation-prompt > p:first-child {
-  color: #a72b42;
-  font-size: 14px;
-  letter-spacing: 3px;
-  margin-bottom: 32px;
-}
-
-.navigation-word {
-  display: inline-block;
-  font-size: clamp(28px, 5vw, 56px);
-  letter-spacing: 3px;
-  white-space: nowrap;
-  margin: 0;
-}
-
-.navigation-word span {
-  position: relative;
-}
-
-.navigation-hint {
-  color: #969093;
-  font-size: 12px;
-  margin-top: 28px;
-}
-
 /* Content pages */
 
 .content-page {
@@ -345,4 +302,83 @@
 .back-button:hover {
   color: #f1eeee;
 }
+
+
+/* Inline typing navigation */
+
+.page-link-active {
+  transform: none;
+}
+
+.page-link-active:hover {
+  transform: none;
+}
+
+.page-label {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.page-label span {
+  position: relative;
+}
+
+.page-link-active .page-label {
+  color: #625c5e;
+}
+
+.page-link-active .page-label .correct {
+  color: #f1eeee;
+}
+
+.page-link-active .page-label .untyped {
+  color: #625c5e;
+}
+
+/* Keep navigation characters as positioning anchors */
+
+.page-link-active .page-label span {
+  position: relative;
+  display: inline-block;
+}
+
+/* Navigation typing cursor */
+
+.page-link-active .page-label .current::before {
+  content: '';
+  position: absolute;
+  left: -2px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 1em;
+  background-color: #f1eeee;
+  animation: blink 1s step-end infinite;
+  pointer-events: none;
+}
+
+.navigation-error {
+  display: inline-block;
+  animation: name-error-shake 0.3s ease-out;
+}
+
+.navigation-error span {
+  animation: name-error-flash 0.3s ease-out;
+}
+
+.page-link:focus,
+.page-link:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.page-link {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.page-link {
+  background: transparent;
+  box-shadow: none;
+}
+
 
