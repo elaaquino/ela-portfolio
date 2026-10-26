@@ -1,0 +1,154 @@
+.contact-page {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  height: 100dvh;
+  margin: 0 auto;
+  padding: 50px 40px;
+  color: #f1eeee;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Back button */
+
+.contact-back {
+  position: absolute;
+  top: 50px;
+  left: 40px;
+  z-index: 10;
+
+  background: transparent;
+  border: none;
+  color: #bc637a;
+  font-family: inherit;
+  font-size: 15px;
+  padding: 8px 0;
+  cursor: pointer;
+}
+
+.contact-back:hover {
+  color: #f1eeee;
+}
+
+/* Main content */
+
+.contact-content {
+  width: 100%;
+  max-width: 850px;
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: 90px;
+}
+
+.contact-header h1 {
+  font-size: clamp(42px, 6vw, 76px);
+  font-weight: 500;
+  margin: 0 0 15px;
+  letter-spacing: -2px;
+}
+
+.contact-header p {
+  color: #a99ba0;
+  font-size: 19px;
+  margin: 0;
+}
+
+/* Two-column layout */
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 8vw, 120px);
+  align-items: start;
+}
+
+.contact-socials,
+.contact-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: #f1eeee;
+  font-size: 21px;
+  min-height: 40px;
+}
+
+.contact-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+
+  color: #d78b9e;
+  font-size: 21px;
+  font-weight: 600;
+}
+
+/* Responsive */
+
+@media (max-width: 700px) {
+  .contact-page {
+    padding: 100px 24px 35px;
+    align-items: flex-start;
+    overflow-y: auto;
+  }
+
+  .contact-back {
+    top: 25px;
+    left: 20px;
+  }
+
+  .contact-header {
+    margin-bottom: 55px;
+  }
+
+  .contact-header p {
+    font-size: 16px;
+  }
+
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 50px;
+    max-width: 350px;
+    margin: 0 auto;
+  }
+
+  .contact-socials,
+  .contact-actions {
+    gap: 25px;
+  }
+
+  .contact-item {
+    font-size: 18px;
+  }
+}
+
+.contact-back:focus-visible {
+  outline: 2px solid #d78b9e;
+  outline-offset: 5px;
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-page *,
+  .contact-page *::before,
+  .contact-page *::after {
+    animation: none;
+    transition: none;
+  }
+}

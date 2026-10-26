@@ -3,6 +3,7 @@ import './App.css'
 import AboutMe from './pages/AboutMe'
 import Projects from './pages/Projects'
 import Experience from './pages/Experience'
+import Contact from './pages/Contact'
 
 const NAME = 'ela aquino'
 const PAGES = ['about me', 'projects', 'experience', 'contact me'] as const
@@ -163,6 +164,8 @@ function App() {
           <AboutMe onBack={goHome} />
         ) : currentPage === 'projects' ? (
           <Projects onBack={goHome} />
+        ) : currentPage === 'contact me' ? (
+          <Contact onBack={goHome} />
         ) : currentPage === 'experience' ? (
           <Experience onBack={goHome} />
         ) : currentPage ? (
