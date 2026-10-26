@@ -382,3 +382,147 @@
 }
 
 
+/* New homepage layout */
+
+.homepage {
+  position: relative;
+  width: 100%;
+  min-height: 100dvh;
+  padding: 65px 7vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-layout {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto minmax(260px, 1fr) auto;
+
+  column-gap: 80px;
+  row-gap: 40px;
+
+  align-items: center;
+}
+
+/* Navigation positions */
+
+.home-nav-position {
+  display: flex;
+}
+
+.home-nav-projects {
+  grid-column: 1;
+  grid-row: 1;
+  justify-content: flex-start;
+}
+
+.home-nav-about-me {
+  grid-column: 2;
+  grid-row: 1;
+  justify-content: flex-end;
+}
+
+.home-nav-experience {
+  grid-column: 1;
+  grid-row: 3;
+  justify-content: flex-start;
+}
+
+.home-nav-contact-me {
+  grid-column: 2;
+  grid-row: 3;
+  justify-content: flex-end;
+}
+
+/* Navigation text */
+
+.home-layout .page-link {
+  background: transparent;
+  border: none;
+  padding: 12px;
+  color: #f1eeee;
+  font-family: inherit;
+  font-size: clamp(20px, 2.5vw, 36px);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.home-layout .page-link:focus {
+  outline: none;
+}
+
+.home-layout .page-link:focus,
+.home-layout .page-link:focus-visible {
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+/* Center character */
+
+.home-character {
+  grid-column: 1 / -1;
+  grid-row: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.character-placeholder {
+  width: clamp(180px, 25vw, 320px);
+  aspect-ratio: 1;
+
+  border: 1px dashed #6d283b;
+  border-radius: 50%;
+  background: rgba(109, 40, 59, 0.08);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #bc637a;
+  font-size: 13px;
+  text-align: center;
+}
+
+/* Typing toggle */
+
+.homepage .typing-toggle {
+  position: absolute;
+  top: 28px;
+  right: 35px;
+  z-index: 10;
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+  .homepage {
+    padding: 90px 20px 40px;
+  }
+
+  .home-layout {
+    column-gap: 12px;
+    row-gap: 25px;
+    grid-template-rows: auto minmax(220px, 1fr) auto;
+  }
+
+  .home-layout .page-link {
+    font-size: clamp(15px, 4vw, 22px);
+    padding: 6px;
+  }
+
+  .character-placeholder {
+    width: min(55vw, 250px);
+  }
+
+  .homepage .typing-toggle {
+    top: 20px;
+    right: 20px;
+  }
+}
+

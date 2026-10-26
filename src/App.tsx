@@ -178,81 +178,67 @@ function App() {
             <p>coming soon ♡</p>
           </div>
         ) : (
-        <div className="homepage">
-          <div className="typing-toggle">
-            <label htmlFor="typing-navigation">
-              typing navigation
-            </label>
-            <input
-              id="typing-navigation"
-              type="checkbox"
-              checked={typingNavigation}
-              onChange={() => setTypingNavigation(!typingNavigation)}
-            />
-          </div>
+          <div className="homepage">
+            <div className="typing-toggle">
+              <label htmlFor="typing-navigation">
+                typing navigation
+              </label>
+              <input
+                id="typing-navigation"
+                type="checkbox"
+                checked={typingNavigation}
+                onChange={() => setTypingNavigation(!typingNavigation)}
+              />
+            </div>
 
-          <h1 className="welcome-title">welcome!</h1>
-
-            <div className="homepage-content">
-              
-            
-            <nav className="page-navigation">
-              {PAGES.map((page, index) => (
-                <button
+            <div className="home-layout">
+              {PAGES.map((page) => (
+                <div
                   key={page}
-                  className={`page-link ${
-                    selectedPage === page ? 'page-link-active' : ''
-                  }`}
-                  onClick={() => handleNavigation(page)}
+                  className={`home-nav-position home-nav-${page.replace(/\s+/g, '-')}`}
                 >
-                  <span className="page-number">
-                    0{index + 1}.
-                  </span>
-
-                  <span
-                    key={selectedPage === page ? navigationError : 'idle'}
-                    className={[
-                      'page-label',
-                      selectedPage === page && navigationError > 0
-                        ? 'navigation-error'
-                        : ''
-                    ].join(' ')}
+                  <button
+                    className={`page-link ${
+                      selectedPage === page ? 'page-link-active' : ''
+                    }`}
+                    onClick={() => handleNavigation(page)}
                   >
-                    {page.split('').map((character, characterIndex) => (
-                      <span
-                        key={characterIndex}
-                        className={[
-                          selectedPage === page
-                            ? characterIndex < navigationTyped.length
-                              ? 'correct'
-                              : 'untyped'
-                            : '',
-                          selectedPage === page &&
-                          characterIndex === navigationTyped.length
-                            ? 'current'
-                            : ''
-                        ].join(' ')}
-                      >
-                        {character === ' ' ? '\u00A0' : character}
-                      </span>
-                    ))}
-                  </span>
-                </button>
-              ))}
-            </nav>
-
-
-              <div className="profile-section">
-                <div className="profile-image">
-                  <img
-                    src="/profile.jpg"
-                    alt="Ela Aquino"
-                  />
+                    <span
+                      key={selectedPage === page ? navigationError : 'idle'}
+                      className={[
+                        'page-label',
+                        selectedPage === page && navigationError > 0
+                          ? 'navigation-error'
+                          : ''
+                      ].join(' ')}
+                    >
+                      {page.split('').map((character, index) => (
+                        <span
+                          key={index}
+                          className={[
+                            selectedPage === page
+                              ? index < navigationTyped.length
+                                ? 'correct'
+                                : 'untyped'
+                              : '',
+                            selectedPage === page &&
+                            index === navigationTyped.length
+                              ? 'current'
+                              : ''
+                          ].join(' ')}
+                        >
+                          {character === ' ' ? '\u00A0' : character}
+                        </span>
+                      ))}
+                    </span>
+                  </button>
                 </div>
+              ))}
 
-                <p className="profile-caption">
-                  can you tell my favorite color is red?
-                </p>
+              <div className="home-character">
+                <div className="character-placeholder">
+                  <span>your drawing goes here ♡</span>
+                </div>
               </div>
             </div>
           </div>
