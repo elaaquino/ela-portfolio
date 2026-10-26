@@ -79,7 +79,7 @@ function AboutMe({ onBack }: AboutMeProps) {
       <div className="about-layout">
         <section className="about-text">
           <div className="about-section">
-            <h2> ⋆.ೃ࿔*:･ hellooo </h2>
+            <h2> ⋆.ೃ࿔*:･ greetings ^_^ </h2>
             <p>
               I'm Ela! I'm a third-year computer science student, transferring to the University of Southern California
               in the Spring of 2027. Growing up in the bay area, I have always been surrounded by technology and innovation, which is part
