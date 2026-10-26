@@ -1,0 +1,131 @@
+
+.experience-page {
+  width: 100%;
+  max-width: 1100px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 50px 40px 100px;
+  color: #f1eeee;
+}
+
+.experience-back {
+  background: transparent;
+  border: none;
+  color: #bc637a;
+  font-family: inherit;
+  font-size: 15px;
+  cursor: pointer;
+  padding: 8px 0;
+}
+
+.experience-back:hover {
+  color: #f1eeee;
+}
+
+.experience-title {
+  text-align: center;
+  font-size: clamp(42px, 6vw, 76px);
+  font-weight: 500;
+  margin: 20px 0 65px;
+}
+
+.experience-timeline {
+  width: 100%;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.experience-category {
+  margin-bottom: 65px;
+}
+
+.experience-category h2 {
+  font-size: 28px;
+  font-weight: 500;
+  color: #f1eeee;
+  margin: 0 0 25px;
+}
+
+.experience-category-content {
+  border-left: 2px solid #6d283b;
+  padding-left: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.experience-item {
+  position: relative;
+}
+
+.experience-item::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: -30px;
+  width: 20px;
+  height: 2px;
+  background: #6d283b;
+}
+
+.experience-item h3 {
+  font-size: 21px;
+  font-weight: 500;
+  color: #f1eeee;
+  margin: 0 0 10px;
+}
+
+.experience-role {
+  display: block;
+  font-size: 13px;
+  color: #d78b9e;
+  margin-bottom: 12px;
+}
+
+.experience-item p {
+  font-size: 14px;
+  color: #a99ba0;
+  line-height: 1.8;
+  margin: 0;
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+  .experience-page {
+    padding: 35px 24px 70px;
+  }
+
+  .experience-title {
+    margin-bottom: 45px;
+  }
+
+  .experience-category-content {
+    padding-left: 20px;
+  }
+
+  .experience-item::before {
+    left: -20px;
+    width: 12px;
+  }
+
+  .experience-item h3 {
+    font-size: 19px;
+  }
+}
+
+/* Accessibility */
+
+.experience-back:focus-visible {
+  outline: 2px solid #d78b9e;
+  outline-offset: 5px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .experience-page *,
+  .experience-page *::before,
+  .experience-page *::after {
+    animation: none;
+    transition: none;
+  }
+}
