@@ -29,7 +29,8 @@ function Experience({ onBack }: ExperienceProps) {
 
       <h1 className="experience-title">experience_</h1>
 
-      <div className="experience-timeline">
+      <div className="experience-scroll">
+        <div className="experience-timeline">
         {/* Tech stack */}
         <section className="experience-category">
           <h2>my tech stack</h2>
@@ -84,6 +85,7 @@ function Experience({ onBack }: ExperienceProps) {
           </div>
         </section>
       </div>
+    </div>
     </div>
   )
 }
