@@ -5,6 +5,11 @@ import Projects from './pages/Projects'
 import Experience from './pages/Experience'
 import Contact from './pages/Contact'
 
+import Character, {
+  pageExpressions,
+  type CharacterExpression
+} from './components/Character'
+
 const NAME = 'ela aquino'
 const PAGES = ['about me', 'projects', 'experience', 'contact me'] as const
 
@@ -20,6 +25,28 @@ function App() {
   const [selectedPage, setSelectedPage] = useState<Page | null>(null)
   const [navigationTyped, setNavigationTyped] = useState('')
   const [navigationError, setNavigationError] = useState(0)
+  const [hoveredPage, setHoveredPage] = useState<Page | null>(null)
+  const [showAngry, setShowAngry] = useState(false)
+
+  useEffect(() => {
+    if (navigationError === 0 || !selectedPage) return
+
+    setShowAngry(true)
+
+    const timeout = window.setTimeout(() => {
+      setShowAngry(false)
+    }, 350)
+
+    return () => window.clearTimeout(timeout)
+  }, [navigationError, selectedPage])
+
+  const activeExpressionPage = selectedPage ?? hoveredPage
+
+  const characterExpression: CharacterExpression = showAngry
+    ? 'angry'
+    : activeExpressionPage
+      ? pageExpressions[activeExpressionPage]
+      : 'neutral'
 
   function handleNavigation(page: Page) {
     if (!typingNavigation) {
@@ -202,6 +229,10 @@ function App() {
                       selectedPage === page ? 'page-link-active' : ''
                     }`}
                     onClick={() => handleNavigation(page)}
+                    onMouseEnter={() => setHoveredPage(page)}
+                    onMouseLeave={() => setHoveredPage(null)}
+                    onFocus={() => setHoveredPage(page)}
+                    onBlur={() => setHoveredPage(null)}
                   >
                     <span
                       key={selectedPage === page ? navigationError : 'idle'}
@@ -236,9 +267,7 @@ function App() {
               ))}
 
               <div className="home-character">
-                <div className="character-placeholder">
-                  <span>your drawing goes here ♡</span>
-                </div>
+                <Character expression={characterExpression} />
               </div>
             </div>
           </div>
