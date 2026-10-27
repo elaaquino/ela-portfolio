@@ -202,7 +202,6 @@
 
 .page-link:hover {
   color: #a72b42;
-  transform: translateX(8px);
 }
 
 .page-number {
@@ -525,3 +524,55 @@
   }
 }
 
+/* Navigation selection effects */
+
+.home-nav-projects .nav-pop,
+.home-nav-experience .nav-pop {
+  transform-origin: left center;
+}
+
+.home-nav-about-me .nav-pop,
+.home-nav-contact-me .nav-pop {
+  transform-origin: right center;
+}
+
+.home-layout .page-link {
+  transition: color 0.2s ease;
+}
+
+.home-layout .page-label {
+  display: inline-block;
+  transition:
+    text-shadow 0.25s ease,
+    filter 0.25s ease;
+}
+
+/* Soft glow on hover */
+.home-layout .page-link:hover .page-label,
+.home-layout .page-link:focus-visible .page-label {
+  text-shadow:
+    0 0 8px rgba(255, 255, 255, 0.4),
+    0 0 18px rgba(255, 255, 255, 0.15);
+}
+
+/* Stronger glow while selected */
+.home-layout .page-link-active .page-label {
+  text-shadow:
+    0 0 10px rgba(255, 255, 255, 0.65),
+    0 0 24px rgba(255, 255, 255, 0.3),
+    0 0 40px rgba(255, 255, 255, 0.12);
+}
+
+/* Keep typing errors visually distinct */
+.home-layout .page-link-active .page-label.navigation-error {
+  text-shadow:
+    0 0 10px rgba(255, 75, 75, 0.8),
+    0 0 25px rgba(255, 40, 40, 0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-layout .page-link,
+  .home-layout .page-label {
+    transition: none;
+  }
+}

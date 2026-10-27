@@ -5,6 +5,7 @@ import Projects from './pages/Projects'
 import Experience from './pages/Experience'
 import Contact from './pages/Contact'
 import ParallaxItem from './components/ParallaxItem'
+import { motion, useReducedMotion } from 'motion/react'
 
 import Character, {
   pageExpressions,
@@ -28,6 +29,7 @@ function App() {
   const [navigationError, setNavigationError] = useState(0)
   const [hoveredPage, setHoveredPage] = useState<Page | null>(null)
   const [showAngry, setShowAngry] = useState(false)
+  const reducedMotion = useReducedMotion()
 
   useEffect(() => {
     if (navigationError === 0 || !selectedPage) return
@@ -218,62 +220,96 @@ function App() {
                 onChange={() => setTypingNavigation(!typingNavigation)}
               />
             </div>
-
             <div className="home-layout">
-              {PAGES.map((page) => (
-                <div
-                  key={page}
-                  className={`home-nav-position home-nav-${page.replace(/\s+/g, '-')}`}
-                >
-                  <ParallaxItem
-                    strength={
-                      page === 'projects' ? 12 :
-                      page === 'about me' ? 16 :
-                      page === 'experience' ? 14 : 18
-                    }
+              {PAGES.map((page) => {
+                const isSelected = selectedPage === page
+                const isHovered = hoveredPage === page
+
+                return (
+                  <div
+                    key={page}
+                    className={`home-nav-position home-nav-${page.replace(/\s+/g, '-')}`}
                   >
-                    <button
-                      className={`page-link ${
-                        selectedPage === page ? 'page-link-active' : ''
-                      }`}
-                      onClick={() => handleNavigation(page)}
-                      onMouseEnter={() => setHoveredPage(page)}
-                      onMouseLeave={() => setHoveredPage(null)}
-                      onFocus={() => setHoveredPage(page)}
-                      onBlur={() => setHoveredPage(null)}
+                    <ParallaxItem
+                      strength={
+                        page === 'projects' ? 12 :
+                        page === 'about me' ? 16 :
+                        page === 'experience' ? 14 : 18
+                      }
                     >
-                    <span
-                      key={selectedPage === page ? navigationError : 'idle'}
-                      className={[
-                        'page-label',
-                        selectedPage === page && navigationError > 0
-                          ? 'navigation-error'
-                          : '',
-                      ].join(' ')}
-                    >
-                      {page.split('').map((character, index) => (
-                        <span
-                          key={index}
-                          className={[
-                            selectedPage === page
-                              ? index < navigationTyped.length
-                                ? 'correct'
-                                : 'untyped'
-                              : '',
-                            selectedPage === page &&
-                            index === navigationTyped.length
-                              ? 'current'
-                              : '',
-                          ].join(' ')}
+                      <motion.div
+                        className="nav-pop"
+                        initial={false}
+                        animate={{
+                          scale: isSelected
+                            ? reducedMotion
+                              ? 1.08
+                              : [1, 1.14, 1.08]
+                            : isHovered
+                              ? 1.035
+                              : 1,
+                        }}
+                        transition={
+                          reducedMotion
+                            ? { duration: 0 }
+                            : isSelected
+                              ? {
+                                  duration: 0.32,
+                                  times: [0, 0.55, 1],
+                                  ease: 'easeOut',
+                                }
+                              : {
+                                  type: 'spring',
+                                  stiffness: 380,
+                                  damping: 19,
+                                }
+                        }
+                      >
+                        <button
+                          className={`page-link ${
+                            isSelected ? 'page-link-active' : ''
+                          }`}
+                          onClick={() => handleNavigation(page)}
+                          onMouseEnter={() => setHoveredPage(page)}
+                          onMouseLeave={() => setHoveredPage(null)}
+                          onFocus={() => setHoveredPage(page)}
+                          onBlur={() => setHoveredPage(null)}
                         >
-                          {character === ' ' ? '\u00A0' : character}
-                        </span>
-                      ))}
-                    </span>
-                    </button>
-                  </ParallaxItem>
-                </div>
-              ))}
+                          <span
+                            key={isSelected ? navigationError : 'idle'}
+                            className={[
+                              'page-label',
+                              isSelected && navigationError > 0
+                                ? 'navigation-error'
+                                : '',
+                            ].join(' ')}
+                          >
+                            {page.split('').map((character, index) => (
+                              <span
+                                key={index}
+                                className={[
+                                  isSelected
+                                    ? index < navigationTyped.length
+                                      ? 'correct'
+                                      : 'untyped'
+                                    : '',
+                                  isSelected &&
+                                  index === navigationTyped.length
+                                    ? 'current'
+                                    : '',
+                                ].join(' ')}
+                              >
+                                {character === ' ' ? '\u00A0' : character}
+                              </span>
+                            ))}
+                          </span>
+                        </button>
+                      </motion.div>
+                    </ParallaxItem>
+                  </div>
+                )
+              })}
+
 
               <div className="home-character">
                 <ParallaxItem strength={22}>
@@ -281,7 +317,7 @@ function App() {
                 </ParallaxItem>
               </div>
             </div>
-          </div>
+            </div>
         )}
 
     </main>
