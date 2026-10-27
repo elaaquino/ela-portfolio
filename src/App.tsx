@@ -4,6 +4,7 @@ import AboutMe from './pages/AboutMe'
 import Projects from './pages/Projects'
 import Experience from './pages/Experience'
 import Contact from './pages/Contact'
+import ParallaxItem from './components/ParallaxItem'
 
 import Character, {
   pageExpressions,
@@ -224,23 +225,30 @@ function App() {
                   key={page}
                   className={`home-nav-position home-nav-${page.replace(/\s+/g, '-')}`}
                 >
-                  <button
-                    className={`page-link ${
-                      selectedPage === page ? 'page-link-active' : ''
-                    }`}
-                    onClick={() => handleNavigation(page)}
-                    onMouseEnter={() => setHoveredPage(page)}
-                    onMouseLeave={() => setHoveredPage(null)}
-                    onFocus={() => setHoveredPage(page)}
-                    onBlur={() => setHoveredPage(null)}
+                  <ParallaxItem
+                    strength={
+                      page === 'projects' ? 12 :
+                      page === 'about me' ? 16 :
+                      page === 'experience' ? 14 : 18
+                    }
                   >
+                    <button
+                      className={`page-link ${
+                        selectedPage === page ? 'page-link-active' : ''
+                      }`}
+                      onClick={() => handleNavigation(page)}
+                      onMouseEnter={() => setHoveredPage(page)}
+                      onMouseLeave={() => setHoveredPage(null)}
+                      onFocus={() => setHoveredPage(page)}
+                      onBlur={() => setHoveredPage(null)}
+                    >
                     <span
                       key={selectedPage === page ? navigationError : 'idle'}
                       className={[
                         'page-label',
                         selectedPage === page && navigationError > 0
                           ? 'navigation-error'
-                          : ''
+                          : '',
                       ].join(' ')}
                     >
                       {page.split('').map((character, index) => (
@@ -255,19 +263,22 @@ function App() {
                             selectedPage === page &&
                             index === navigationTyped.length
                               ? 'current'
-                              : ''
+                              : '',
                           ].join(' ')}
                         >
                           {character === ' ' ? '\u00A0' : character}
                         </span>
                       ))}
                     </span>
-                  </button>
+                    </button>
+                  </ParallaxItem>
                 </div>
               ))}
 
               <div className="home-character">
-                <Character expression={characterExpression} />
+                <ParallaxItem strength={22}>
+                  <Character expression={characterExpression} />
+                </ParallaxItem>
               </div>
             </div>
           </div>
