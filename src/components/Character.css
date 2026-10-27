@@ -13,3 +13,13 @@
   object-fit: contain;
   pointer-events: none;
 }
+
+.character-pupil {
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .character-pupil {
+    transition: none;
+  }
+}
