@@ -9,13 +9,17 @@ import {
 type ParallaxItemProps = {
   children: React.ReactNode
   strength?: number
-  className?: string
+  floatDistance?: number
+  floatDuration?: number
+  floatDelay?: number
 }
 
 export default function ParallaxItem({
   children,
   strength = 15,
-  className = '',
+  floatDistance = 10,
+  floatDuration = 6,
+  floatDelay = 0,
 }: ParallaxItemProps) {
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
@@ -64,13 +68,30 @@ export default function ParallaxItem({
 
   return (
     <motion.div
-      className={className}
       style={{
-        x: reducedMotion ? 0 : x,
-        y: reducedMotion ? 0 : y,
+        x: x,
+        y: y,
       }}
     >
-      {children}
+            <motion.div
+        animate={
+          reducedMotion
+            ? {}
+            : {
+                y: [0, -floatDistance, 0, floatDistance * 0.4, 0],
+                x: [0, floatDistance * 0.3, 0],
+                rotate: [0, 0.4, 0],
+              }
+        }
+        transition={{
+          duration: floatDuration,
+          delay: floatDelay,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+      >
+        {children}
+      </motion.div>
     </motion.div>
   )
 }

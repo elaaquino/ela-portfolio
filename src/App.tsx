@@ -337,7 +337,12 @@ function App() {
 
 
                 <div className="home-character">
-                  <ParallaxItem strength={22}>
+                  <ParallaxItem
+                    strength={22}
+                    floatDistance={10}
+                    floatDuration={5.5}
+                    floatDelay={1.5}
+                  >
                     <Character expression={characterExpression} />
                   </ParallaxItem>
                 </div>
