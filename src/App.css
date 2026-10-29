@@ -576,3 +576,15 @@
     transition: none;
   }
 }
+
+.home-impact {
+  width: 100%;
+  max-width: 1200px;
+  transform-origin: center center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-impact {
+    transform: none;
+  }
+}

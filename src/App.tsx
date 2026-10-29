@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import './App.css'
 import AboutMe from './pages/AboutMe'
 import Projects from './pages/Projects'
@@ -6,6 +6,9 @@ import Experience from './pages/Experience'
 import Contact from './pages/Contact'
 import ParallaxItem from './components/ParallaxItem'
 import { motion, useReducedMotion } from 'motion/react'
+import HomeImpact, {
+  type ImpactType,
+} from './components/HomeImpact'
 
 import Character, {
   pageExpressions,
@@ -30,6 +33,21 @@ function App() {
   const [hoveredPage, setHoveredPage] = useState<Page | null>(null)
   const [showAngry, setShowAngry] = useState(false)
   const reducedMotion = useReducedMotion()
+  const [homeImpact, setHomeImpact] = useState<{
+    id: number
+    type: ImpactType
+  } | null>(null)
+
+  const impactId = useRef(0)
+
+  const triggerHomeImpact = (type: ImpactType) => {
+    impactId.current += 1
+
+    setHomeImpact({
+      id: impactId.current,
+      type,
+    })
+  }
 
   useEffect(() => {
     if (navigationError === 0 || !selectedPage) return
@@ -99,6 +117,9 @@ function App() {
       const expected = NAME[typed.length]
 
       if (event.key.toLowerCase() === expected) {
+        
+        triggerHomeImpact('type')
+        
         const next = typed + event.key.toLowerCase()
         setTyped(next)
 
@@ -220,103 +241,108 @@ function App() {
                 onChange={() => setTypingNavigation(!typingNavigation)}
               />
             </div>
-            <div className="home-layout">
-              {PAGES.map((page) => {
-                const isSelected = selectedPage === page
-                const isHovered = hoveredPage === page
+            <HomeImpact impact={homeImpact}>
+              <div className="home-layout">
+                {PAGES.map((page) => {
+                  const isSelected = selectedPage === page
+                  const isHovered = hoveredPage === page
 
-                return (
-                  <div
-                    key={page}
-                    className={`home-nav-position home-nav-${page.replace(/\s+/g, '-')}`}
-                  >
-                    <ParallaxItem
-                      strength={
-                        page === 'projects' ? 12 :
-                        page === 'about me' ? 16 :
-                        page === 'experience' ? 14 : 18
-                      }
+                  return (
+                    <div
+                      key={page}
+                      className={`home-nav-position home-nav-${page.replace(/\s+/g, '-')}`}
                     >
-                      <motion.div
-                        className="nav-pop"
-                        initial={false}
-                        animate={{
-                          scale: isSelected
-                            ? reducedMotion
-                              ? 1.08
-                              : [1, 1.14, 1.08]
-                            : isHovered
-                              ? 1.035
-                              : 1,
-                        }}
-                        transition={
-                          reducedMotion
-                            ? { duration: 0 }
-                            : isSelected
-                              ? {
-                                  duration: 0.32,
-                                  times: [0, 0.55, 1],
-                                  ease: 'easeOut',
-                                }
-                              : {
-                                  type: 'spring',
-                                  stiffness: 380,
-                                  damping: 19,
-                                }
+                      <ParallaxItem
+                        strength={
+                          page === 'projects' ? 12 :
+                          page === 'about me' ? 16 :
+                          page === 'experience' ? 14 : 18
                         }
                       >
-                        <button
-                          className={`page-link ${
-                            isSelected ? 'page-link-active' : ''
-                          }`}
-                          onClick={() => handleNavigation(page)}
-                          onMouseEnter={() => setHoveredPage(page)}
-                          onMouseLeave={() => setHoveredPage(null)}
-                          onFocus={() => setHoveredPage(page)}
-                          onBlur={() => setHoveredPage(null)}
+                        <motion.div
+                          className="nav-pop"
+                          initial={false}
+                          animate={{
+                            scale: isSelected
+                              ? reducedMotion
+                                ? 1.08
+                                : [1, 1.14, 1.08]
+                              : isHovered
+                                ? 1.035
+                                : 1,
+                          }}
+                          transition={
+                            reducedMotion
+                              ? { duration: 0 }
+                              : isSelected
+                                ? {
+                                    duration: 0.32,
+                                    times: [0, 0.55, 1],
+                                    ease: 'easeOut',
+                                  }
+                                : {
+                                    type: 'spring',
+                                    stiffness: 380,
+                                    damping: 19,
+                                  }
+                          }
                         >
-                          <span
-                            key={isSelected ? navigationError : 'idle'}
-                            className={[
-                              'page-label',
-                              isSelected && navigationError > 0
-                                ? 'navigation-error'
-                                : '',
-                            ].join(' ')}
+                          <button
+                            className={`page-link ${
+                              isSelected ? 'page-link-active' : ''
+                            }`}
+                            onClick={() => {
+                            triggerHomeImpact('click')
+                            handleNavigation(page)
+                          }}
+                            onMouseEnter={() => setHoveredPage(page)}
+                            onMouseLeave={() => setHoveredPage(null)}
+                            onFocus={() => setHoveredPage(page)}
+                            onBlur={() => setHoveredPage(null)}
                           >
-                            {page.split('').map((character, index) => (
-                              <span
-                                key={index}
-                                className={[
-                                  isSelected
-                                    ? index < navigationTyped.length
-                                      ? 'correct'
-                                      : 'untyped'
-                                    : '',
-                                  isSelected &&
-                                  index === navigationTyped.length
-                                    ? 'current'
-                                    : '',
-                                ].join(' ')}
-                              >
-                                {character === ' ' ? '\u00A0' : character}
-                              </span>
-                            ))}
-                          </span>
-                        </button>
-                      </motion.div>
-                    </ParallaxItem>
-                  </div>
-                )
-              })}
+                            <span
+                              key={isSelected ? navigationError : 'idle'}
+                              className={[
+                                'page-label',
+                                isSelected && navigationError > 0
+                                  ? 'navigation-error'
+                                  : '',
+                              ].join(' ')}
+                            >
+                              {page.split('').map((character, index) => (
+                                <span
+                                  key={index}
+                                  className={[
+                                    isSelected
+                                      ? index < navigationTyped.length
+                                        ? 'correct'
+                                        : 'untyped'
+                                      : '',
+                                    isSelected &&
+                                    index === navigationTyped.length
+                                      ? 'current'
+                                      : '',
+                                  ].join(' ')}
+                                >
+                                  {character === ' ' ? '\u00A0' : character}
+                                </span>
+                              ))}
+                            </span>
+                          </button>
+                        </motion.div>
+                      </ParallaxItem>
+                    </div>
+                  )
+                })}
 
 
-              <div className="home-character">
-                <ParallaxItem strength={22}>
-                  <Character expression={characterExpression} />
-                </ParallaxItem>
-              </div>
-            </div>
+                <div className="home-character">
+                  <ParallaxItem strength={22}>
+                    <Character expression={characterExpression} />
+                  </ParallaxItem>
+                </div>
+                </div>
+              </HomeImpact>
             </div>
         )}
 
