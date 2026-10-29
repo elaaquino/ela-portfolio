@@ -29,7 +29,7 @@ export default function HomeImpact({
 
     const animations = {
       click: {
-        y: [0, 7, -3, 0],
+        y: [0, 5, 0],
         scale: [1, 0.992, 1.004, 1],
         duration: 0.35,
       },
