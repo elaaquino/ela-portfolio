@@ -11,6 +11,11 @@
   );
 }
 
+.intro > :not(.background-base):not(.bubbles-container):not(.background-vignette) {
+  position: relative;
+  z-index: 3;
+}
+
 .intro-content {
   text-align: center;
   padding: 24px;
@@ -605,12 +610,15 @@
 .background-vignette {
   position: fixed;
   inset: 0;
+
   background: radial-gradient(
     ellipse at center,
-    transparent 35%,
-    rgba(0, 0, 0, 0.35) 75%,
-    rgba(0, 0, 0, 0.75) 100%
+    transparent 15%,
+    rgba(0, 0, 0, 0.45) 55%,
+    rgba(0, 0, 0, 0.8) 85%,
+    rgba(0, 0, 0, 0.95) 100%
   );
+
   pointer-events: none;
-  z-index: 1;
+  z-index: 2;
 }

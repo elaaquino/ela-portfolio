@@ -13,13 +13,13 @@ type Bubble = {
 
 export default function Bubbles() {
   const [bubbles] = useState<Bubble[]>(() =>
-    Array.from({ length: 28 }, (_, id) => ({
+    Array.from({ length: 35 }, (_, id) => ({
       id,
       left: Math.random() * 100,
-      size: 5 + Math.random() * 24,
+      size: 8 + Math.random() * 45,
       duration: 12 + Math.random() * 15,
       delay: -Math.random() * 27,
-      drift: -35 + Math.random() * 70,
+      drift: -35 + Math.random() * 85,
       opacity: 0.15 + Math.random() * 0.3,
     }))
   )
