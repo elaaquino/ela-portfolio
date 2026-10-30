@@ -588,3 +588,29 @@
     transform: none;
   }
 }
+
+.background-base {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 50% 45%,
+    #57131e 0%,
+    #360b13 48%,
+    #190509 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.background-vignette {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 35%,
+    rgba(0, 0, 0, 0.35) 75%,
+    rgba(0, 0, 0, 0.75) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}

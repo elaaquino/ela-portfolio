@@ -5,6 +5,7 @@ import Projects from './pages/Projects'
 import Experience from './pages/Experience'
 import Contact from './pages/Contact'
 import ParallaxItem from './components/ParallaxItem'
+import Bubbles from './components/Bubbles'
 import { motion, useReducedMotion } from 'motion/react'
 import HomeImpact, {
   type ImpactType,
@@ -184,6 +185,9 @@ function App() {
 
   return (
     <main className="intro">
+        <div className="background-base" aria-hidden="true" />
+        <Bubbles />
+        <div className="background-vignette" aria-hidden="true" />
       {!entered ? (
         <div className="intro-content">
           <p className="intro-prompt">
