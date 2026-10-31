@@ -12,7 +12,7 @@ const socialLinks = [
 
 function Contact({ onBack }: ContactProps) {
   return (
-    <div className="contact-page">
+    <div className="contact-page page-enter">
       <button className="contact-back" onClick={onBack}>
         ← back home
       </button>

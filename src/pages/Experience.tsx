@@ -22,7 +22,7 @@ const techStack = [
 
 function Experience({ onBack }: ExperienceProps) {
   return (
-    <div className="experience-page">
+    <div className="experience-page page-enter">
       <button className="experience-back" onClick={onBack}>
         ← back home
       </button>

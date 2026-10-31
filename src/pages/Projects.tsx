@@ -136,7 +136,7 @@ function Projects({ onBack }: ProjectsProps) {
   }
 
   return (
-    <div className="projects-page">
+    <div className="projects-page page-enter">
       <button className="projects-back" onClick={onBack}>
         ← back home
       </button>

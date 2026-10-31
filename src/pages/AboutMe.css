@@ -4,7 +4,6 @@
   margin: 0 auto;
   padding: 50px 48px 90px;
   color: #f1eeee;
-  animation: about-appear 0.6s ease-out;
 }
 
 .about-back {
@@ -208,12 +207,12 @@
 /* Accessibility */
 
 @media (prefers-reduced-motion: reduce) {
-  .about-page,
   .photo-enter {
     animation: none;
   }
+}
 
   .carousel-dot::after {
     transition: none;
   }
-}
+

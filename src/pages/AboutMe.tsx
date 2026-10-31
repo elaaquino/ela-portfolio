@@ -69,7 +69,7 @@ function AboutMe({ onBack }: AboutMeProps) {
   }
 
   return (
-    <div className="about-page">
+    <div className="about-page page-enter">
       <button className="about-back" onClick={onBack}>
         ← back home
       </button>
