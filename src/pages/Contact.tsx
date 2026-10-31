@@ -5,9 +5,21 @@ type ContactProps = {
 }
 
 const socialLinks = [
-  { name: 'GitHub', icon: 'GH' },
-  { name: 'LinkedIn', icon: 'in' },
-  { name: 'Instagram', icon: 'IG' },
+  {
+    name: 'GitHub',
+    icon: 'GH',
+    url: 'https://github.com/elaaquino',
+  },
+  {
+    name: 'LinkedIn',
+    icon: 'in',
+    url: 'https://www.linkedin.com/in/elaaaquino/',
+  },
+  {
+    name: 'Email',
+    icon: '@',
+    url: 'mailto:eluhkeeno@gmail.com',
+  },
 ]
 
 function Contact({ onBack }: ContactProps) {
@@ -30,12 +42,18 @@ function Contact({ onBack }: ContactProps) {
             aria-label="Social media"
           >
             {socialLinks.map(social => (
-              <div className="contact-item" key={social.name}>
+              <a
+                className="contact-item"
+                key={social.name}
+                href={social.url}
+                target={social.url.startsWith('http') ? '_blank' : undefined}
+                rel={social.url.startsWith('http') ? 'noopener noreferrer' : undefined}
+              >
                 <span className="contact-icon" aria-hidden="true">
                   {social.icon}
                 </span>
                 <span>{social.name}</span>
-              </div>
+              </a>
             ))}
           </section>
 
@@ -44,19 +62,26 @@ function Contact({ onBack }: ContactProps) {
             className="contact-actions"
             aria-label="Contact options"
           >
-            <div className="contact-item">
+            <a
+              className="contact-item"
+              href="mailto:eluhkeeno@gmail.com"
+            >
               <span className="contact-icon" aria-hidden="true">
                 @
               </span>
               <span>email me</span>
-            </div>
+            </a>
 
-            <div className="contact-item">
+            <a
+              className="contact-item"
+              href="/resume.pdf"
+              download
+            >
               <span className="contact-icon" aria-hidden="true">
                 ↓
               </span>
               <span>download résumé</span>
-            </div>
+            </a>
           </section>
         </div>
       </div>
