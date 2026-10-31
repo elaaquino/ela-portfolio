@@ -190,11 +190,16 @@ function App() {
         <div className="background-vignette" aria-hidden="true" />
       {!entered ? (
         <div className="intro-content">
-          <p className="intro-prompt">
-            type my name to enter
-          </p>
-
-          <h1
+            <ParallaxItem
+              strength={12}
+              floatDistance={5}
+              floatDuration={7}
+              floatDelay={0}
+            >
+              <div className="intro-prompt">
+                type my name to enter
+              </div>
+                        <h1
             key={errorCount}
             className={`intro-name ${errorCount > 0 ? 'name-error' : ''}`}
           >
@@ -214,6 +219,9 @@ function App() {
           <p className="intro-hint">
             start typing anywhere
           </p>
+            </ParallaxItem>
+
+
         </div>
         ) : currentPage === 'about me' ? (
           <AboutMe onBack={goHome} />
