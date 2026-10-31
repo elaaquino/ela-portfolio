@@ -152,3 +152,18 @@
     transition: none;
   }
 }
+
+.contact-item {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.contact-item:hover {
+  color: #f1eeee;
+}
+
+.contact-item:focus-visible {
+  outline: 2px solid #d78b9e;
+  outline-offset: 4px;
+}
