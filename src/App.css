@@ -41,6 +41,11 @@
   transition: color 0.12s ease;
 }
 
+.intro-name.intro-error {
+  transform-origin: center center;
+  animation: navigation-tilt 0.22s ease-out;
+}
+
 .untyped {
   color: #625c5e;
 }
@@ -104,8 +109,9 @@
 
 /* Whole-name error feedback */
 
-.name-error {
-  animation: name-error-shake 0.3s ease-out;
+.intro-name.name-error {
+  transform-origin: center center;
+  animation: navigation-tilt 0.22s ease-out;
 }
 
 .name-error span {
@@ -363,7 +369,8 @@
 
 .navigation-error {
   display: inline-block;
-  animation: name-error-shake 0.3s ease-out;
+  transform-origin: center center;
+  animation: navigation-tilt 0.22s ease-out;
 }
 
 .navigation-error span {
@@ -714,5 +721,11 @@
   .navigation-hint {
     animation: none;
     opacity: 0.85;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-name.name-error {
+    animation: none;
   }
 }

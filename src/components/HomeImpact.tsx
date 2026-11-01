@@ -38,11 +38,11 @@ export default function HomeImpact({
         scale: [1, 0.998, 1],
         duration: 0.16,
       },
-        error: {
-        x: [0, -3, 0],
-        y: [0, 0, 0],
-        duration: 0.12,
-        },
+      error: {
+        x: [0, 0],
+        y: [0, 0],
+        duration: 0.15,
+      },
       complete: {
         y: [0, -8, 2, 0],
         scale: [1, 1.025, 0.995, 1],
