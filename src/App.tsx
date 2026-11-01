@@ -351,6 +351,11 @@ function App() {
                               ))}
                             </span>
                           </button>
+                          {isSelected && typingNavigation && navigationTyped.length === 0 && (
+                            <span className="navigation-hint">
+                              type to continue_
+                            </span>
+                          )}
                         </motion.div>
                       </ParallaxItem>
                     </div>

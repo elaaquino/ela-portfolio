@@ -681,3 +681,38 @@
   outline-offset: 4px;
   opacity: 1;
 }
+.navigation-hint {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+
+  white-space: nowrap;
+  font-family: inherit;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #d78b9e;
+
+  pointer-events: none;
+
+  animation: hint-appear 0.3s ease-out both;
+}
+
+@keyframes hint-appear {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -5px);
+  }
+
+  to {
+    opacity: 0.85;
+    transform: translate(-50%, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navigation-hint {
+    animation: none;
+    opacity: 0.85;
+  }
+}
