@@ -16,7 +16,7 @@ const socialLinks = [
     url: 'https://www.linkedin.com/in/elaaaquino/',
   },
   {
-    name: 'Email',
+    name: 'eluhkeeno@gmail.com',
     icon: '@',
     url: 'mailto:eluhkeeno@gmail.com',
   },
@@ -62,15 +62,12 @@ function Contact({ onBack }: ContactProps) {
             className="contact-actions"
             aria-label="Contact options"
           >
-            <a
-              className="contact-item"
-              href="mailto:eluhkeeno@gmail.com"
-            >
-              <span className="contact-icon" aria-hidden="true">
-                @
-              </span>
-              <span>email me</span>
-            </a>
+            <div className="contact-item">
+            <span className="contact-icon" aria-hidden="true">
+              @
+            </span>
+            <span>ela.aquin@usc.edu</span>
+          </div>
 
             <a
               className="contact-item"

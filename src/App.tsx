@@ -220,6 +220,16 @@ function App() {
             start typing anywhere
           </p>
             </ParallaxItem>
+          <button
+            type="button"
+            className="skip-intro"
+            onClick={() => {
+              setEntered(true)
+              setSelectedPage(null)
+            }}
+          >
+            skip typing intro →
+          </button>
 
 
         </div>

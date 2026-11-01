@@ -646,3 +646,38 @@
     animation: none;
   }
 }
+.skip-intro {
+  position: fixed;
+  bottom: 30px;
+  right: 40px;
+  z-index: 10;
+
+  background: transparent;
+  border: none;
+  padding: 10px;
+
+  color: #bc637a;
+  font-family: inherit;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+
+  cursor: pointer;
+  opacity: 0.65;
+
+  transition:
+    color 0.25s ease,
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.skip-intro:hover {
+  color: #f1eeee;
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+.skip-intro:focus-visible {
+  outline: 2px solid #d78b9e;
+  outline-offset: 4px;
+  opacity: 1;
+}
