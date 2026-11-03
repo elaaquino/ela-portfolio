@@ -732,3 +732,27 @@
     animation: none;
   }
 }
+@keyframes typing-bob {
+  0% {
+    transform: translateY(0);
+  }
+
+  45% {
+    transform: translateY(3px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.typing-bob {
+  display: inline-block;
+  animation: typing-bob 0.16s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typing-bob {
+    animation: none;
+  }
+}

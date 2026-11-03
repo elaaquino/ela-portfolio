@@ -34,6 +34,7 @@ function App() {
   const [hoveredPage, setHoveredPage] = useState<Page | null>(null)
   const [showAngry, setShowAngry] = useState(false)
   const reducedMotion = useReducedMotion()
+  const [lastNavigationKeyWasError, setLastNavigationKeyWasError] = useState(false)
   const [homeImpact, setHomeImpact] = useState<{
     id: number
     type: ImpactType
@@ -165,6 +166,8 @@ function App() {
       const expected = selectedPage![navigationTyped.length]
 
       if (event.key.toLowerCase() === expected) {
+        setLastNavigationKeyWasError(false)
+
         const next = navigationTyped + event.key.toLowerCase()
         setNavigationTyped(next)
 
@@ -172,6 +175,7 @@ function App() {
           openPage(selectedPage!)
         }
       } else {
+        setLastNavigationKeyWasError(true)
         setNavigationError(previous => previous + 1)
       }
     }
@@ -199,22 +203,24 @@ function App() {
               <div className="intro-prompt">
                 type my name to enter
               </div>
-                        <h1
-            key={errorCount}
-            className={`intro-name ${errorCount > 0 ? 'name-error' : ''}`}
-          >
-            {NAME.split('').map((character, index) => (
-              <span
-                key={index}
-                className={[
-                  index < typed.length ? 'correct' : 'untyped',
-                  index === typed.length ? 'current' : ''
-                ].join(' ')}
+              <h1
+                key={`intro-${typed.length}-${errorCount}`}
+                className={`intro-name ${
+                  typed.length > 0 ? 'typing-bob' : ''
+                }`}
               >
-                {character === ' ' ? '\u00A0' : character}
-              </span>
-            ))}
-          </h1>
+                {NAME.split('').map((character, index) => (
+                  <span
+                    key={index}
+                    className={[
+                      index < typed.length ? 'correct' : 'untyped',
+                      index === typed.length ? 'current' : ''
+                    ].join(' ')}
+                  >
+                    {character === ' ' ? '\u00A0' : character}
+                  </span>
+                ))}
+              </h1>
 
           <p className="intro-hint">
             start typing anywhere
@@ -322,34 +328,43 @@ function App() {
                             onFocus={() => setHoveredPage(page)}
                             onBlur={() => setHoveredPage(null)}
                           >
-                            <span
-                              key={isSelected ? navigationError : 'idle'}
-                              className={[
-                                'page-label',
-                                isSelected && navigationError > 0
-                                  ? 'navigation-error'
-                                  : '',
-                              ].join(' ')}
-                            >
-                              {page.split('').map((character, index) => (
-                                <span
-                                  key={index}
-                                  className={[
-                                    isSelected
-                                      ? index < navigationTyped.length
-                                        ? 'correct'
-                                        : 'untyped'
-                                      : '',
-                                    isSelected &&
-                                    index === navigationTyped.length
-                                      ? 'current'
-                                      : '',
-                                  ].join(' ')}
-                                >
-                                  {character === ' ' ? '\u00A0' : character}
-                                </span>
-                              ))}
-                            </span>
+                          <span
+                            key={
+                              isSelected
+                                ? `${navigationTyped.length}-${navigationError}`
+                                : 'idle'
+                            }
+                            className={[
+                              'page-label',
+                              isSelected && lastNavigationKeyWasError
+                                ? 'navigation-error'
+                                : '',
+                              isSelected &&
+                              !lastNavigationKeyWasError &&
+                              navigationTyped.length > 0
+                                ? 'typing-bob'
+                                : '',
+                            ].join(' ')}
+                          >
+                            {page.split('').map((character, index) => (
+                              <span
+                                key={index}
+                                className={[
+                                  isSelected
+                                    ? index < navigationTyped.length
+                                      ? 'correct'
+                                      : 'untyped'
+                                    : '',
+                                  isSelected &&
+                                  index === navigationTyped.length
+                                    ? 'current'
+                                    : '',
+                                ].join(' ')}
+                              >
+                                {character === ' ' ? '\u00A0' : character}
+                              </span>
+                            ))}
+                          </span>
                           </button>
                           {isSelected && typingNavigation && navigationTyped.length === 0 && (
                             <span className="navigation-hint">
