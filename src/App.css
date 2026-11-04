@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'Terminal Grotesque';
+  src: url('/fonts/terminal-grotesque.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 .intro {
   min-height: 100dvh;
   display: flex;
@@ -30,10 +38,11 @@
 
 .intro-name {
   font-size: clamp(32px, 6vw, 64px);
-  letter-spacing: 4px;
+  letter-spacing: 5px;
   margin: 0;
   white-space: nowrap;
   display: inline-block;
+  font-family: 'Terminal Grotesque', sans-serif;
 }
 
 .intro-name span {
@@ -330,6 +339,8 @@
 .page-label {
   display: inline-block;
   white-space: nowrap;
+  font-family: 'Terminal Grotesque', sans-serif;
+  letter-spacing: 5px;
 }
 
 .page-label span {
