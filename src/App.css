@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600&display=swap');
+
 @font-face {
   font-family: 'Terminal Grotesque';
   src: url('/fonts/terminal-grotesque.ttf') format('truetype');
@@ -778,4 +780,11 @@
 .contact-page h1 {
   font-family: 'Terminal Grotesque', sans-serif;
   letter-spacing: 5px;
+}
+
+.about-page p {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 14px;
+  line-height: 1.8;
+  font-weight: 400;
 }
