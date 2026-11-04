@@ -35,6 +35,7 @@ function App() {
   const [showAngry, setShowAngry] = useState(false)
   const reducedMotion = useReducedMotion()
   const [lastNavigationKeyWasError, setLastNavigationKeyWasError] = useState(false)
+  const [lastKeyWasError, setLastKeyWasError] = useState(false)
   const [homeImpact, setHomeImpact] = useState<{
     id: number
     type: ImpactType
@@ -119,7 +120,7 @@ function App() {
       const expected = NAME[typed.length]
 
       if (event.key.toLowerCase() === expected) {
-        
+        setLastKeyWasError(false)
         triggerHomeImpact('type')
         
         const next = typed + event.key.toLowerCase()
@@ -130,6 +131,7 @@ function App() {
         }
       } else {
         setErrorCount(previous => previous + 1)
+        setLastKeyWasError(true)
       }
     }
 
@@ -206,7 +208,11 @@ function App() {
               <h1
                 key={`intro-${typed.length}-${errorCount}`}
                 className={`intro-name ${
-                  typed.length > 0 ? 'typing-bob' : ''
+                  lastKeyWasError
+                    ? 'name-error'
+                    : typed.length > 0
+                      ? 'typing-bob'
+                      : ''
                 }`}
               >
                 {NAME.split('').map((character, index) => (

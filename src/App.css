@@ -50,9 +50,13 @@
   transition: color 0.12s ease;
 }
 
-.intro-name.intro-error {
+.intro-name.name-error {
   transform-origin: center center;
-  animation: navigation-tilt 0.22s ease-out;
+  animation: name-error-tilt 0.3s ease-out;
+}
+
+.name-error span {
+  animation: name-error-flash 0.3s ease-out;
 }
 
 .untyped {
