@@ -771,3 +771,11 @@
     animation: none;
   }
 }
+
+.about-page h1,
+.projects-page h1,
+.experience-page h1,
+.contact-page h1 {
+  font-family: 'Terminal Grotesque', sans-serif;
+  letter-spacing: 5px;
+}
