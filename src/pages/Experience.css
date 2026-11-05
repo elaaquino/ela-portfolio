@@ -82,6 +82,7 @@
   font-weight: 500;
   margin: 20px 0 25px;
   flex-shrink: 0;
+  font-family: 'Roboto Mono', monospace;
 }
 
 .experience-timeline {
@@ -128,6 +129,7 @@
   font-weight: 500;
   color: #f1eeee;
   margin: 0 0 10px;
+  font-family: 'Roboto Mono', monospace;
 }
 
 .experience-role {
@@ -135,6 +137,7 @@
   font-size: 13px;
   color: #d78b9e;
   margin-bottom: 12px;
+  font-family: 'Roboto Mono', monospace;
 }
 
 .experience-item p {
@@ -192,4 +195,11 @@
     animation: none;
     transition: none;
   }
+}
+
+.experience-page p {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 14px;
+  line-height: 1.8;
+  font-weight: 400;
 }
