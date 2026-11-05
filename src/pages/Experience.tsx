@@ -58,8 +58,8 @@ function Experience({ onBack }: ExperienceProps) {
               </span>
 
               <p>
-                Add a description of your responsibilities,
-                accomplishments, and experiences here.
+                Identified an operational challenge and independently proposed a software solution, collaborating with management to define requirements and secure deployment approval.
+                Supported hundreds of daily guests through customer-facing operations and contributed to guest satisfaction improvements of over 20%.
               </p>
             </article>
           </div>
@@ -74,12 +74,11 @@ function Experience({ onBack }: ExperienceProps) {
               <h3>Women in Computer Science</h3>
 
               <span className="experience-role">
-                Vice President
+                Vice President & ICC Representative · June 2025 - June 2026
               </span>
 
               <p>
-                Add a description of your leadership responsibilities,
-                involvement, and contributions here.
+                Coordinated technical workshops, professional development events, and student outreach initiatives to support women pursuing computer science.
               </p>
             </article>
           </div>
