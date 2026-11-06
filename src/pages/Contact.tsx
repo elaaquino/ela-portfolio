@@ -32,7 +32,7 @@ function Contact({ onBack }: ContactProps) {
       <div className="contact-content">
         <header className="contact-header">
           <h1>contact me_</h1>
-          <p>i'd love to hear from you ♡</p>
+          <p>i'm one click away!</p>
         </header>
 
         <div className="contact-layout">
